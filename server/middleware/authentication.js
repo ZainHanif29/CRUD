@@ -3,7 +3,6 @@ import jwt from 'jsonwebtoken';
 const auth = async (req, res, next) => {
     try {
         const token = req.cookies.token;
-        console.log('Check token:', token);
 
         if (!token) {
             return res.status(401).json({ message: 'User not authenticated' });
@@ -15,7 +14,6 @@ const auth = async (req, res, next) => {
         }
 
         req._id = decode.userID;
-        console.log('User ID:', req._id);
         next();
     } catch (error) {
         console.error('Authentication error:', error);

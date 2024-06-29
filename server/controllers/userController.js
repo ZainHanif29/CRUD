@@ -28,7 +28,7 @@ class UserController {
             await User.save();
             return res.status(200).json({ message: "User Register 👍" });
         } catch (error) {
-            return res.status(500).json({message:"Server Error 😊",error})
+            return res.status(500).json({ message: "Server Error 😊", error })
         }
     };
 
@@ -44,12 +44,12 @@ class UserController {
             }
             const hashPassword = await bcrypt.compare(password, user.password);
             if (email == user.email && hashPassword) {
-                const token = jwt.sign({userID:user._id},process.env.JWT_TOKEN,{expiresIn:process.env.JWT_TOKEN_EXP})
-                return res.status(200).cookie("token",token).json({ message: "User Login 👍" , 'token':token});
+                const token = jwt.sign({ userID: user._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
+                return res.status(200).cookie("token", token).json({ message: "User Login 👍", 'token': token });
             }
             return res.status(400).json({ message: "Incorrect Password 👎" });
         } catch (error) {
-            return res.status(500).json({message:"Server Error 😊",error})
+            return res.status(500).json({ message: "Server Error 😊", error })
         }
     };
 }
