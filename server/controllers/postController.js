@@ -24,5 +24,6 @@ class PostController {
             return res.status(500).json({message:"Server Error 😊",error})
         }
     }
+
 };
 export default PostController;
