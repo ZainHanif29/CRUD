@@ -43,7 +43,11 @@ class UserController {
             const hashPassword = await bcrypt.compare(password, user.password);
             if (email == user.email && hashPassword) {
                 const token = jwt.sign({ userID: user._id }, process.env.JWT_TOKEN, { expiresIn: process.env.JWT_TOKEN_EXP })
-                return res.status(200).cookie("token", token).json({ message: "User Login 👍", 'token': token });
+                return res.status(200).cookie("token", token,{
+                    httpOnly: true,
+                    // secure: process.env.NODE_ENV === 'production',
+                    sameSite: 'Strict'
+                  }).json({ message: "User Login 👍", 'token': token });
             }
             return res.status(203).json({ message: "Incorrect Password 👎" });
         } catch (error) {

@@ -6,7 +6,7 @@ class PostController {
             const { title, description } = req.body;
             const image = req.file ? req.file.filename : null;
             if (!title || !description || !image) {
-                return res.status(400).json({ message: "All fields are required 😊" })
+                return res.status(203).json({ message: "All fields are required 😊" })
             }
             const data = await postModel({ title, description, image, userID: req._id });
             await data.save();

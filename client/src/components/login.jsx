@@ -17,9 +17,12 @@ function Login() {
         const res = await axios.post(`${url}/login`, {
           email: email,
           password: password,
+        },{
+          withCredentials:true
         });
         if (res.status == 200) {
           toast.success(`${res.data.message}`);
+          console.log(res.data.token);
           navigate('/')
         } else if (res.status == 203) {
           toast.error(`${res.data.message}`);
