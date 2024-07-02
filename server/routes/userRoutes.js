@@ -10,7 +10,7 @@ router.post('/register', UserController.register)
 router.post('/login', UserController.login)
 
 
-router.post('/post', auth,upload.single('file'),PostController.creatPost)
+router.post('/post', auth, upload.single('file'), PostController.creatPost)
 router.get('/post', auth,PostController.readPost)
 
 export default router;
